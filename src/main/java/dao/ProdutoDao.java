@@ -87,7 +87,7 @@ public class ProdutoDao {
         }
     }
 
-    public List<Produto> listar() throws SQLException {
+    public void listar() throws SQLException {
         List<Produto> produtos = new ArrayList<>();
         PreparedStatement stmt = null;
         ResultSet resultado = null;
@@ -125,7 +125,9 @@ public class ProdutoDao {
                 conexao.close();
             }
         }
-        return produtos;
+        for(Produto prod : produtos){
+            System.out.println(prod);
+        }
         
     }
 

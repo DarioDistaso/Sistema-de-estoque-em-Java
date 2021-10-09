@@ -125,8 +125,7 @@ public class Principal {
                         }
                     }  
                     
-                    produtos = produtoDao.listar();
-                    System.out.println(produtos);
+                    produtoDao.listar();
                     
                     while(true){
                         System.out.println("Selecione o código do produto: ");
@@ -151,38 +150,14 @@ public class Principal {
                     
                     case 2: // consultar vendas
                         List<Venda> vendas = new ArrayList<>();
-                        vendas = vendaDao.listar();
-                       
                         System.out.println("Vendas realizadas:\n");
-                        
-                        for(Venda vd : vendas){
-                            System.out.println("Id venda: " + vd.getId()
-                            + ", Usuario: " + vd.getUsuario().getNome()
-                            + ", Cliente: " + vd.getCliente().getNome()
-                            + ", Data: " + vd.getData()
-                            + ", Produto: " + vd.getProduto().getNome()
-                            + ", Preço: R$ " + vd.getProduto().getPrecoVenda()
-                            + ", Quantidade: " + vd.getProduto().getQuantidade()
-                            + ", Total: R$ " + vd.getPrecoTotal());
-                        }
-                    
+                        vendaDao.listar();
                     break;
                     
                     case 3: // Alterar venda
                        
-                        vendas = vendaDao.listar();
-                        
-                        for(Venda vd : vendas){
-                            System.out.println("Id venda: " + vd.getId()
-                            + ", Usuario: " + vd.getUsuario().getNome()
-                            + ", Cliente: " + vd.getCliente().getNome()
-                            + ", Data: " + vd.getData()
-                            + ", Produto: " + vd.getProduto().getNome()
-                            + ", Preço: R$ " + vd.getProduto().getPrecoVenda()
-                            + ", Quantidade: " + vd.getProduto().getQuantidade()
-                            + ", Total: R$ " + vd.getPrecoTotal());
-                        }
-                        
+                        vendaDao.listar();
+                      
                         while(true) {
                             System.out.println("Digite o id da venda que deseja alterar:");
                             id = entrada.nextInt();
@@ -228,19 +203,8 @@ public class Principal {
                             break;
                         
                     case 4://remover venda
-                        vendas = vendaDao.listar();
-                        
-                        for(Venda vd : vendas) {
-                            System.out.println("Id venda: " + vd.getId()
-                            + ", Usuario: " + vd.getUsuario().getNome()
-                            + ", Cliente: " + vd.getCliente().getNome()
-                            + ", Data: " + vd.getData()
-                            + ", Produto: " + vd.getProduto().getNome()
-                            + ", Preço: R$ " + vd.getProduto().getPrecoVenda()
-                            + ", Quantidade: " + vd.getProduto().getQuantidade()
-                            + ", Total: R$ " + vd.getPrecoTotal());
-                        }
-                        
+                        vendaDao.listar();
+                       
                         while(true) {
                                 System.out.println("Digite o id da venda que quer remover:");
                                 id = entrada.nextInt();
@@ -402,35 +366,28 @@ public class Principal {
                         break;
 
                     case 2: //consultar todos os produtos
-                        produtos = produtoDao.listar();
                         System.out.println("Produtos cadastrados:\n");
-
-                        for(Produto prod : produtos){
-                            System.out.println(prod);
-                        }
+                        produtoDao.listar();
                         break;
 
                     case 3: //atualizar produto
-                        produtos = produtoDao.listar();
+                        produtoDao.listar();
                         
-                        for(Produto prod : produtos){
-                            System.out.println(prod);
-                        }
+                        while(true) {
+                            System.out.println("Digite id do produto que deseja alterar: ");
+                            id = entrada.nextInt();
+                            entrada.nextLine();
+                            produto = produtoDao.buscar(id);
+
+                            if (produto != null){
+                                break;
+                            }
+                            else{
+                                System.out.println("Produto inexistente!");
+                            }
+
+                        }    
                         
-                    while(true) {
-                        System.out.println("Digite id do produto que deseja alterar: ");
-                        id = entrada.nextInt();
-                        entrada.nextLine();
-                        produto = produtoDao.buscar(id);
-                        
-                        if (produto != null){
-                            break;
-                        }
-                        else{
-                            System.out.println("Produto inexistente!");
-                        }
-                        
-                    }    
                         System.out.println("Nome do produto: ");
                         String nome_produto = entrada.nextLine();
                         System.out.println("Preço de compra: ");
@@ -453,11 +410,7 @@ public class Principal {
                         break;
                         
                     case 4: // remover produto
-                        produtos = produtoDao.listar();
-                        
-                        for(Produto prod : produtos){
-                            System.out.println(prod);
-                        }
+                        produtoDao.listar();
                         
                         while(true) {
                             System.out.println("Digite o id do produto que quer remover");
@@ -607,7 +560,7 @@ public class Principal {
                     } catch (SQLException ex) {
                         Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                    produtos = produtoDao.listar();
+                    produtoDao.listar();
                     System.out.println(produtos);
                     
                     while(true){

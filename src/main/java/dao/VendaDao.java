@@ -82,7 +82,7 @@ public class VendaDao {
 
     }
 
-    public List<Venda> listar() throws SQLException {
+    public void listar() throws SQLException {
         List<Venda> vendas = new ArrayList<>();
         PreparedStatement stmt = null;
         ResultSet resultado = null;
@@ -128,7 +128,17 @@ public class VendaDao {
                 conexao.close();
             }
         }
-        return vendas;
+        
+        for(Venda vd : vendas){
+            System.out.println("Id venda: " + vd.getId()
+            + ", Usuario: " + vd.getUsuario().getNome()
+            + ", Cliente: " + vd.getCliente().getNome()
+            + ", Data: " + vd.getData()
+            + ", Produto: " + vd.getProduto().getNome()
+            + ", Preço: R$ " + vd.getProduto().getPrecoVenda()
+            + ", Quantidade: " + vd.getProduto().getQuantidade()
+            + ", Total: R$ " + vd.getPrecoTotal());
+        }
     }
 
     public void remover(int id) throws SQLException {
