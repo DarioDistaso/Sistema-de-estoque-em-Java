@@ -18,8 +18,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author @author Grupo 1: Dario Distaso, Rafael Vilvert, Eduard Richard
- * Sprung, José da Silva Mattos Junior
+ * @author: Dario Distaso
  */
 
 public class Principal {
