@@ -21,6 +21,7 @@ import java.util.logging.Logger;
  * @author @author Grupo 1: Dario Distaso, Rafael Vilvert, Eduard Richard
  * Sprung, José da Silva Mattos Junior
  */
+
 public class Principal {
 
     public static void main(String[] args) throws SQLException {
@@ -64,7 +65,7 @@ public class Principal {
                 System.out.println("Dados inválidos");
                 continue;
             }
-        }//fim while
+        }
         
         while (true) {
             System.out.println(
@@ -109,14 +110,8 @@ public class Principal {
                             System.out.println("Dados inválidos!");
                         }
                     }
-                        clientes = clienteDao.listar();
-                        
-                        for (Cliente cli : clientes){
-                            System.out.println("Id: " + cli.getId()
-                            + ", Nome: " + cli.getNome()
-                            + ", Cpf: " + cli.getCpf());
-                        }
-                        
+                        clienteDao.listar();
+                    
                     while(true){    
                         System.out.println("Digite o id do cliente: ");
                         id = entrada.nextInt();
@@ -129,7 +124,8 @@ public class Principal {
                         } else {
                             System.out.println("Cliente inexistente");  
                         }
-                    }   
+                    }  
+                    
                     produtos = produtoDao.listar();
                     System.out.println(produtos);
                     
@@ -157,6 +153,7 @@ public class Principal {
                     case 2: // consultar vendas
                         List<Venda> vendas = new ArrayList<>();
                         vendas = vendaDao.listar();
+                       
                         System.out.println("Vendas realizadas:\n");
                         
                         for(Venda vd : vendas){
@@ -169,8 +166,9 @@ public class Principal {
                             + ", Quantidade: " + vd.getProduto().getQuantidade()
                             + ", Total: R$ " + vd.getPrecoTotal());
                         }
+                    
                     break;
-
+                    
                     case 3: // Alterar venda
                        
                         vendas = vendaDao.listar();
@@ -287,94 +285,94 @@ public class Principal {
                 int opcao_usuario = entrada.nextInt();
                 entrada.nextLine();
 
-                    switch (opcao_usuario) {
-                        case 1: //cadastrar usuario
-                            System.out.println("============================");
-                            System.out.println("\nDigite o nome do usuário: ");
-                            nome = entrada.nextLine();
-                            System.out.println("\nDigite o login do usuário: ");
-                            login = entrada.nextLine();
-                            System.out.println("\nDigite a senha do usuário: ");
-                            senha = entrada.nextLine();
-                            usuario = new Usuario(nome, login, senha);
-                            usuarioDao.inserir(usuario);
-                            break;
-
-                        case 2: // consultar usuarios
-                            usuarios = usuarioDao.listar();
-                            System.out.println("Usuarios cadastrados:\n");
-
-                        for(Usuario us : usuarios){
-                            System.out.println("Código: " + us.getId() 
-                                    + ", Nome: " + us.getNome());
-                        }
+                switch (opcao_usuario) {
+                    case 1: //cadastrar usuario
+                        System.out.println("============================");
+                        System.out.println("\nDigite o nome do usuário: ");
+                        nome = entrada.nextLine();
+                        System.out.println("\nDigite o login do usuário: ");
+                        login = entrada.nextLine();
+                        System.out.println("\nDigite a senha do usuário: ");
+                        senha = entrada.nextLine();
+                        usuario = new Usuario(nome, login, senha);
+                        usuarioDao.inserir(usuario);
                         break;
 
-                        case 3: //alterar usuario
-                            usuarios = usuarioDao.listar();
-                            
-                            for(Usuario us : usuarios){
-                            System.out.println("Código: " + us.getId() 
-                                    + ", Nome: " + us.getNome());
-                            }
-                            
-                            while(true) {
-                                System.out.println("Digite id do usuário que deseja alterar: ");
-                                id = entrada.nextInt();
-                                entrada.nextLine();
-                                usuario = usuarioDao.buscar(id);
-                        
-                            if (usuario != null){
-                                break;
-                            }
-                            else{
-                                System.out.println("Usuario inexistente!");
-                            }
-                        
-                            }// fim while
-                            
-                            System.out.println("Nome usuário: ");
-                            nome = entrada.nextLine();
-                            System.out.println("Login: ");
-                            login = entrada.nextLine();
-                            System.out.println("Senha: ");
-                            senha = entrada.nextLine();
-                            System.out.println("...Aguarde...");
-                            usuario.setId(id);
-                            usuario.setNome(nome);
-                            usuario.setLogin(login);
-                            usuario.setSenha(senha);
-                            usuarioDao.atualizar(usuario);
-                            break;
+                    case 2: // consultar usuarios
+                        usuarios = usuarioDao.listar();
+                        System.out.println("Usuarios cadastrados:\n");
 
-                        case 4: // remover usuario
-                            usuarios = usuarioDao.listar();
-                            
-                            for(Usuario us : usuarios){
-                            System.out.println("Código: " + us.getId() 
-                                    + ", Nome: " + us.getNome());
-                            }
-                            
-                            while(true) {
-                                System.out.println("Digite o id do usuário que quer remover:");
-                                id = entrada.nextInt();
-                                entrada.nextLine();
-                                usuario = usuarioDao.buscar(id);
-
-                            if (usuario != null){
-                                usuarioDao.remover(id);
-                                break;
-                            }
-                            else{
-                                System.out.println("Usuario inexistente!");  
-                            }
-
-                        }   // fim while
-                            
-                        case 5: //volta ao menu principal
-                            break;
+                    for(Usuario us : usuarios){
+                        System.out.println("Código: " + us.getId() 
+                                + ", Nome: " + us.getNome());
                     }
-                    continue; //repete o menu principal
+                    break;
+
+                    case 3: //alterar usuario
+                        usuarios = usuarioDao.listar();
+
+                        for(Usuario us : usuarios){
+                        System.out.println("Código: " + us.getId() 
+                                + ", Nome: " + us.getNome());
+                        }
+
+                        while(true) {
+                            System.out.println("Digite id do usuário que deseja alterar: ");
+                            id = entrada.nextInt();
+                            entrada.nextLine();
+                            usuario = usuarioDao.buscar(id);
+
+                        if (usuario != null){
+                            break;
+                        }
+                        else{
+                            System.out.println("Usuario inexistente!");
+                        }
+
+                        }// fim while
+
+                        System.out.println("Nome usuário: ");
+                        nome = entrada.nextLine();
+                        System.out.println("Login: ");
+                        login = entrada.nextLine();
+                        System.out.println("Senha: ");
+                        senha = entrada.nextLine();
+                        System.out.println("...Aguarde...");
+                        usuario.setId(id);
+                        usuario.setNome(nome);
+                        usuario.setLogin(login);
+                        usuario.setSenha(senha);
+                        usuarioDao.atualizar(usuario);
+                        break;
+
+                    case 4: // remover usuario
+                        usuarios = usuarioDao.listar();
+
+                        for(Usuario us : usuarios){
+                        System.out.println("Código: " + us.getId() 
+                                + ", Nome: " + us.getNome());
+                        }
+
+                        while(true) {
+                            System.out.println("Digite o id do usuário que quer remover:");
+                            id = entrada.nextInt();
+                            entrada.nextLine();
+                            usuario = usuarioDao.buscar(id);
+
+                        if (usuario != null){
+                            usuarioDao.remover(id);
+                            break;
+                        }
+                        else{
+                            System.out.println("Usuario inexistente!");  
+                        }
+
+                    }   // fim while
+
+                    case 5: //volta ao menu principal
+                        break;
+                }
+                continue; //repete o menu principal
                 
             case 3: //Produtos
                 
@@ -508,18 +506,12 @@ public class Principal {
                         break;
 
                     case 2: //listar todos os clientes
-                        clientes = clienteDao.listar();
                         System.out.println("Clientes cadastrados:\n");
-
-                        for(Cliente cli : clientes){
-                            System.out.println("Código: " + cli.getId() 
-                                    + ", Nome: " + cli.getNome()
-                                    + ", Cpf: " + cli.getCpf());  
-                        }
+                        clienteDao.listar();
                         break;
 
                     case 3: //atualizar cliente
-                        clientes = clienteDao.listar();
+                        clienteDao.listar();
                         
                         for(Cliente cli : clientes){
                             System.out.println("Id: " + cli.getId() 
@@ -553,7 +545,7 @@ public class Principal {
                     break;
 
                     case 4: //remover cliente
-                        clientes = clienteDao.listar();
+                        clienteDao.listar();
                         
                         for(Cliente cli : clientes){
                             System.out.println("Id: " + cli.getId() 

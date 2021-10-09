@@ -66,7 +66,7 @@ public class ClienteDao {
         }
     }
 
-    public List<Cliente> listar() throws SQLException {
+    public void listar() throws SQLException {
         List<Cliente> clientes = new ArrayList<>();
         PreparedStatement stmt = null;
         ResultSet resultado = null;
@@ -97,7 +97,11 @@ public class ClienteDao {
                 conexao.close();
             }
         }
-        return clientes;
+        for (Cliente cli : clientes){
+            System.out.println("Id: " + cli.getId()
+            + ", Nome: " + cli.getNome()
+            + ", Cpf: " + cli.getCpf());
+        }
     }
 
     public void remover(int id) throws SQLException {
